@@ -1,0 +1,4 @@
+user_id,name,email,city
+1,Alice,alice@example.com,New York
+2,Bob,bob@example.com,Los Angeles
+3,Charlie,charlie@example.com,Chicago
