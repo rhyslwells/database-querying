@@ -18,10 +18,8 @@ def app():
 
     2. **Build DB from CSV**  
        Create a SQLite database from CSV files and run SQL queries on it.
-   
-    To learn about the use of [queries](https://rhyslwells.github.io/Data-Archive/standardised/Querying) and [ER diagrams](https://rhyslwells.github.io/Data-Archive/standardised/ER-Diagrams), please visit the Data Archive.            
-                
-    If you experience an error please refresh the page.
+
+    --- 
 
     ### How to Use This App
 
@@ -32,18 +30,38 @@ def app():
     5. Visualize your database structure with the ER diagram button.  
     6. Download the current state of your database anytime.
 
-    ### Use Cases
+    ---
 
-    - Quickly inspect and query SQLite databases without installing software.  
-    - Prototype new database schemas and data loads.  
-    - Educational tool for learning SQL and relational database concepts.
+    ### Supported Features
+
+    - In-memory SQLite databases for fast, temporary operations.  
+    - Schema visualization using Mermaid ER diagrams.  
+    - CSV upload with column validation and data insertion.  
+    - Interactive SQL query editor with instant feedback.  
+    - Database download to save your work externally.
+
+    ---
 
     ### Important Notes
 
     - Databases exist only in memory and will be lost when you close or refresh the browser.  
     - File size limits and browser memory constraints apply.  
     - Ensure your schema and CSV files are correctly formatted to avoid errors.  
+    - Large datasets may impact performance.
 
-    For detailed documentation see [database-querying](https://github.com/rhyslwells/database-querying).
+    ---
+
+    ### Use Cases
+
+    - Quickly inspect and query SQLite databases without installing software.  
+    - Prototype new database schemas and data loads.  
+    - Educational tool for learning SQL and relational database concepts.
+
+    ---
+
+    For detailed documentation and updates, visit the [project repository](https://github.com/yourproject).
+
+    If you encounter issues or have questions, please contact the developer.
+
     """)
 

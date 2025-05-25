@@ -18,10 +18,6 @@ def app():
 
     2. **Build DB from CSV**  
        Create a SQLite database from CSV files and run SQL queries on it.
-   
-    To learn about the use of [queries](https://rhyslwells.github.io/Data-Archive/standardised/Querying) and [ER diagrams](https://rhyslwells.github.io/Data-Archive/standardised/ER-Diagrams), please visit the Data Archive.            
-                
-    If you experience an error please refresh the page.
 
     ### How to Use This App
 
@@ -43,6 +39,7 @@ def app():
     - Databases exist only in memory and will be lost when you close or refresh the browser.  
     - File size limits and browser memory constraints apply.  
     - Ensure your schema and CSV files are correctly formatted to avoid errors.  
+    - Large datasets may impact performance.
 
     For detailed documentation see [database-querying](https://github.com/rhyslwells/database-querying).
     """)
