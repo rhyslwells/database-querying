@@ -3,29 +3,16 @@ import os
 
 st.set_page_config(page_title="SQLite Streamlit App", layout="wide")
 
+# Reset button in sidebar
 if st.sidebar.button("Reset Application", key="reset_sidebar"):
+    if "conn" in st.session_state and st.session_state.conn:
+        st.session_state.conn.close()
     db_path = st.session_state.get("db_filename")
-
-    # Try to delete the DB file (if exists)
-    if db_path:
-        try:
-            os.remove(db_path)
-        except PermissionError:
-            st.warning(
-                f"Could not delete {db_path} — it may still be in use. "
-                "Please manually refresh the page to fully reset the app."
-            )
-
-    # Always clear session state
+    if db_path and os.path.exists(db_path):
+        os.remove(db_path)
     for key in list(st.session_state.keys()):
         del st.session_state[key]
-
-    # Attempt to rerun
-    try:
-        st.rerun()
-    except:
-        st.warning("Please manually refresh the page to complete the reset.")
-
+    st.rerun()
 
 st.sidebar.title("Navigation")
 
