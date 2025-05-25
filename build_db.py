@@ -10,9 +10,7 @@ from utils.file_uploads import upload_csv_files, upload_sql_schema
 from utils.schema_utils import get_table_columns
 from utils.visualization import generate_mermaid_er
 
-
 import streamlit_mermaid
-
 
 def get_timestamped_db_name():
     return f"db_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.db"
