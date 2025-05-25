@@ -29,7 +29,7 @@ if "db_filename" not in st.session_state:
 
 st.title("SQLite Database Builder and Query Interface")
 
-# Reset app
+# Step 7: Reset app
 if st.button("Reset Application"):
     if st.session_state.conn:
         st.session_state.conn.close()
@@ -38,28 +38,26 @@ if st.button("Reset Application"):
         os.remove(db_path)
     for key in list(st.session_state.keys()):
         del st.session_state[key]
-    st.rerun()
+    st.experimental_rerun()
+
 
 # Step 1: Upload existing SQLite DB (optional)
 st.header("1. Upload Existing SQLite Database (Optional)")
-uploaded_db = upload_sqlite_db()
 
+uploaded_db = upload_sqlite_db()
 if uploaded_db:
-    # Ensure existing connection is closed
     if st.session_state.conn:
         st.session_state.conn.close()
-    
-    uploaded_path = os.path.join(tempfile.gettempdir(), get_timestamped_db_name())
-    with open(uploaded_path, "wb") as f:
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".db") as f:
         f.write(uploaded_db.getbuffer())
-
+        uploaded_path = f.name
     st.session_state.conn = create_connection(uploaded_path)
     st.session_state.db_filename = uploaded_path
     st.session_state.schema_executed = True
     st.success("Database loaded from uploaded .db file")
 
-# Step 2: Provide schema (only if DB not uploaded or schema not yet executed)
-if not uploaded_db and (st.session_state.conn is None or not st.session_state.schema_executed):
+# Step 2: Provide schema (if no DB uploaded)
+if st.session_state.conn is None or not st.session_state.schema_executed:
     st.header("2. Provide Schema (Upload .sql or Type It)")
     schema_input_mode = st.radio("Choose how to provide your schema:", ["Upload SQL file", "Type SQL schema"])
     schema_sql = None
@@ -139,3 +137,4 @@ if st.session_state.conn:
     st.header("6. Visualize ER Diagram")
     mermaid_code = generate_mermaid_er(st.session_state.conn)
     streamlit_mermaid.st_mermaid(mermaid_code)
+
